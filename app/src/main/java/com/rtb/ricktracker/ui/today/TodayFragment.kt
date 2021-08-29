@@ -1,4 +1,4 @@
-package com.rtb.ricktracker.ui.home
+package com.rtb.ricktracker.ui.today
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -8,13 +8,12 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.rtb.ricktracker.R
-import com.rtb.ricktracker.databinding.FragmentHomeBinding
+import com.rtb.ricktracker.databinding.FragmentTodayBinding
 
-class HomeFragment : Fragment() {
+class TodayFragment : Fragment() {
 
-    private lateinit var homeViewModel: HomeViewModel
-    private var _binding: FragmentHomeBinding? = null
+    private lateinit var homeViewModel: TodayViewModel
+    private var _binding: FragmentTodayBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -26,9 +25,9 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         homeViewModel =
-            ViewModelProvider(this).get(HomeViewModel::class.java)
+            ViewModelProvider(this).get(TodayViewModel::class.java)
 
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding = FragmentTodayBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
         val textView: TextView = binding.textHome
