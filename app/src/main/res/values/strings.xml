@@ -3,4 +3,11 @@
     <string name="title_today">Today</string>
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
+    <string name="day_sunday">SUN</string>
+    <string name="day_monday">MON</string>
+    <string name="day_tuesday">TUE</string>
+    <string name="day_wednesday">WED</string>
+    <string name="day_thursday">THU</string>
+    <string name="day_friday">FRI</string>
+    <string name="day_saturday">SAT</string>
 </resources>
