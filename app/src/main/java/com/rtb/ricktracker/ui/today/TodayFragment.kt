@@ -23,6 +23,7 @@ import com.rtb.ricktracker.databinding.FragmentTodayBinding
 import com.rtb.ricktracker.util.daysOfWeekFromLocale
 import com.rtb.ricktracker.util.makeInVisible
 import com.rtb.ricktracker.util.makeVisible
+import com.rtb.ricktracker.util.setupMainFragmentNavController
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
@@ -153,12 +154,7 @@ class TodayFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val navController = findNavController()
-        val appBarConfiguration = AppBarConfiguration(
-            setOf(
-                R.id.navigation_today, R.id.navigation_dashboard, R.id.navigation_notifications
-            )
-        )
-        binding.toolbar.setupWithNavController(navController, appBarConfiguration)
+        binding.toolbar.setupMainFragmentNavController(navController)
     }
 
     override fun onDestroyView() {

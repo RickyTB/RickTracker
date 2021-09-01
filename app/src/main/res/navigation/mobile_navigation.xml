@@ -12,10 +12,10 @@
         tools:layout="@layout/fragment_today" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.rtb.ricktracker.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        android:id="@+id/navigation_habits"
+        android:name="com.rtb.ricktracker.ui.habits.HabitsFragment"
+        android:label="@string/title_habits"
+        tools:layout="@layout/fragment_habits" />
 
     <fragment
         android:id="@+id/navigation_notifications"

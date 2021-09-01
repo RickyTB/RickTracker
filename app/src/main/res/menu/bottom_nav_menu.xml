@@ -7,9 +7,9 @@
         android:title="@string/title_today" />
 
     <item
-        android:id="@+id/navigation_dashboard"
-        android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/title_dashboard" />
+        android:id="@+id/navigation_habits"
+        android:icon="@drawable/ic_outline_format_list_bulleted_24"
+        android:title="@string/title_habits" />
 
     <item
         android:id="@+id/navigation_notifications"

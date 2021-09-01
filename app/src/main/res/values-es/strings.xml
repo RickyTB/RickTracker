@@ -2,7 +2,6 @@
 <resources>
     <string name="app_name">RickTracker</string>
     <string name="title_today">Hoy</string>
-    <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notificaciones</string>
     <string name="day_sunday">DOM</string>
     <string name="day_monday">LUN</string>
@@ -11,4 +10,6 @@
     <string name="day_thursday">JUE</string>
     <string name="day_friday">VIE</string>
     <string name="day_saturday">SAB</string>
+    <string name="title_habits">Hábitos</string>
+    <string name="add_habit">Agragar hábito</string>
 </resources>

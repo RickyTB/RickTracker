@@ -4,10 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.29483695652173914" />
+        <entry key="app/src/main/res/layout/blank_fragment.xml" value="0.37864583333333335" />
         <entry key="app/src/main/res/layout/calendar_day_layout.xml" value="0.353125" />
         <entry key="app/src/main/res/layout/calendar_day_legend.xml" value="0.37864583333333335" />
         <entry key="app/src/main/res/layout/example_5_calendar_day.xml" value="0.37864583333333335" />
+        <entry key="app/src/main/res/layout/fragment_dashboard.xml" value="0.37864583333333335" />
+        <entry key="app/src/main/res/layout/fragment_habits.xml" value="0.24456521739130435" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.353125" />
+        <entry key="app/src/main/res/layout/fragment_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_item_list.xml" value="0.37864583333333335" />
         <entry key="app/src/main/res/layout/fragment_notifications.xml" value="0.353125" />
         <entry key="app/src/main/res/layout/fragment_today.xml" value="0.353125" />
         <entry key="app/src/main/res/layout/layout_calendar_day.xml" value="0.21" />

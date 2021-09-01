@@ -47,7 +47,7 @@
                 android:paddingEnd="20dp"
                 android:paddingBottom="12dp"
                 android:textAllCaps="true"
-                android:text="No tienes tareas en esta fecha"
+                android:text="No tienes tareas en la fecha seleccionada"
                 android:textSize="14sp"
                 tools:text="7 Jan, 2019" />
 
@@ -61,16 +61,5 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <!--
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/exThreeAddButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
-        android:layout_margin="20dp"
-        app:tint="@color/white"
-        app:backgroundTint="@color/colorAccent"
-        app:srcCompat="@drawable/ic_add" />
-    -->
 
 </LinearLayout>

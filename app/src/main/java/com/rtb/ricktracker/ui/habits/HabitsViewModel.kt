@@ -1,10 +1,10 @@
-package com.rtb.ricktracker.ui.dashboard
+package com.rtb.ricktracker.ui.habits
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class DashboardViewModel : ViewModel() {
+class HabitsViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
         value = "This is dashboard Fragment"
