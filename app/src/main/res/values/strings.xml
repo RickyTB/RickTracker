@@ -11,4 +11,10 @@
     <string name="day_saturday">SAT</string>
     <string name="title_habits">Habits</string>
     <string name="add_habit">Add habit</string>
+    <string name="title_create_habit">Create habit</string>
+    <string name="description">Description</string>
+    <string name="start_date">Start date</string>
+    <string name="days">Days</string>
+    <string name="duration">Duration</string>
+    <string name="unit">Unit</string>
 </resources>

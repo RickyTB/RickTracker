@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.rtb.ricktracker.databinding.FragmentHabitsBinding
 import com.rtb.ricktracker.util.setupMainFragmentNavController
@@ -29,18 +30,23 @@ class HabitsFragment : Fragment() {
             ViewModelProvider(this).get(HabitsViewModel::class.java)
 
         _binding = FragmentHabitsBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+
+        val navController = findNavController()
+        binding.toolbar.setupMainFragmentNavController(navController)
+
+        binding.addHabitBtn.setOnClickListener {
+            it.findNavController().navigate(HabitsFragmentDirections.toCreateHabitFragment())
+        }
 
         habitsViewModel.text.observe(viewLifecycleOwner, Observer {
             //TODO: Use the viewmodel
         })
-        return root
+
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val navController = findNavController()
-        binding.toolbar.setupMainFragmentNavController(navController)
     }
 
     override fun onDestroyView() {
