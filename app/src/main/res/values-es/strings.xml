@@ -18,4 +18,13 @@
     <string name="days">Días</string>
     <string name="duration">Duración</string>
     <string name="unit">Unidad</string>
+    <string name="streak">Racha</string>
+    <string name="progress">Progreso</string>
+    <string name="this_week">Esta semana</string>
+    <string name="no_routine">Sin rutina</string>
+    <string name="habit_added">¡Hábito agregado!</string>
+    <string-array name="unit_options">
+        <item>Minutos</item>
+        <item>Horas</item>
+    </string-array>
 </resources>

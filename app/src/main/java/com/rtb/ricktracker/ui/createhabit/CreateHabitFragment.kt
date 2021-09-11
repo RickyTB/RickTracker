@@ -6,10 +6,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.Toast
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
+import com.rtb.ricktracker.R
 import com.rtb.ricktracker.databinding.FragmentCreateHabitBinding
+import com.rtb.ricktracker.model.Habit
+import com.rtb.ricktracker.ui.habits.HabitsFragmentDirections
+import java.util.*
 
 class CreateHabitFragment : Fragment() {
 
@@ -34,12 +41,51 @@ class CreateHabitFragment : Fragment() {
         val appBarConfiguration = AppBarConfiguration(navController.graph)
         binding.toolbar.setupWithNavController(navController, appBarConfiguration)
 
+        val unitOptions = resources.getStringArray(R.array.unit_options)
+        val adapter = ArrayAdapter(requireContext(), R.layout.list_item, unitOptions)
+        binding.unitSelect.setAdapter(adapter)
+
+        viewModel.loading.observe(viewLifecycleOwner, {
+            binding.createBtn.isEnabled = !it
+        })
+
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding.createBtn.setOnClickListener {
+            onCreateHabit()
+        }
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun onCreateHabit() {
+        val description = binding.descriptionTxt.text.toString()
+        val startDate = Date(binding.calendarView.date)
+        val days = listOf(
+            binding.monChip.isChecked,
+            binding.tueChip.isChecked,
+            binding.wedChip.isChecked,
+            binding.thuChip.isChecked,
+            binding.friChip.isChecked,
+            binding.satChip.isChecked,
+            binding.sunChip.isChecked,
+        )
+        val durationUnit = binding.unitSelect.text.toString()
+        val duration = binding.durationTxt.text.toString()
+
+        // TODO: Validations
+
+        val newHabit = Habit(0, description, startDate, duration.toInt(), durationUnit, days)
+        viewModel.createHabit(newHabit)
+        Toast.makeText(requireContext(), getString(R.string.habit_added), Toast.LENGTH_LONG).show()
+        findNavController().navigateUp()
     }
 
 }

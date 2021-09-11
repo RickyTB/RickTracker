@@ -9,6 +9,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.rtb.ricktracker.databinding.FragmentHabitsBinding
 import com.rtb.ricktracker.util.setupMainFragmentNavController
 
@@ -38,15 +39,16 @@ class HabitsFragment : Fragment() {
             it.findNavController().navigate(HabitsFragmentDirections.toCreateHabitFragment())
         }
 
-        habitsViewModel.text.observe(viewLifecycleOwner, Observer {
-            //TODO: Use the viewmodel
+        val adapter = HabitsAdapter()
+        val recyclerView = binding.habitRecycler
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        habitsViewModel.getHabits.observe(viewLifecycleOwner, Observer {
+            adapter.values = it
         })
 
         return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
     }
 
     override fun onDestroyView() {

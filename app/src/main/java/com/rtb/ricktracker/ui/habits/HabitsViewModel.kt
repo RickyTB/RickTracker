@@ -1,13 +1,12 @@
 package com.rtb.ricktracker.ui.habits
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.*
+import com.rtb.ricktracker.AppDatabase
+import com.rtb.ricktracker.model.Habit
+import com.rtb.ricktracker.model.dao.HabitDao
 
-class HabitsViewModel : ViewModel() {
-
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
-    }
-    val text: LiveData<String> = _text
+class HabitsViewModel(application: Application) : AndroidViewModel(application) {
+    private val habitDao: HabitDao = AppDatabase.getDatabase(application).habitDao()
+    val getHabits: LiveData<List<Habit>> = habitDao.getAll()
 }

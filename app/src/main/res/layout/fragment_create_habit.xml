@@ -28,7 +28,7 @@
             android:padding="@dimen/activity_vertical_margin">
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/textField"
+                android:id="@+id/descriptionLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/content_spacing"
@@ -36,7 +36,7 @@
                 android:importantForAutofill="no">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/editTextTextMultiLine"
+                    android:id="@+id/descriptionTxt"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
@@ -51,7 +51,7 @@
                 android:textAppearance="?attr/textAppearanceCaption" />
 
             <CalendarView
-                android:id="@+id/calendarView2"
+                android:id="@+id/calendarView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="@dimen/content_spacing" />
@@ -65,50 +65,56 @@
             <com.google.android.material.chip.ChipGroup
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_marginBottom="@dimen/content_spacing">
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chip4"
+                    android:id="@+id/monChip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
+                    android:checked="true"
                     android:text="@string/day_monday"
                     app:chipBackgroundColor="@color/secondaryLightColor" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chip6"
+                    android:id="@+id/tueChip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
+                    android:checked="true"
                     android:text="@string/day_tuesday"
                     app:chipBackgroundColor="@color/secondaryLightColor" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chip9"
+                    android:id="@+id/wedChip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
+                    android:checked="true"
                     android:text="@string/day_wednesday"
                     app:chipBackgroundColor="@color/secondaryLightColor" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chip10"
+                    android:id="@+id/thuChip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
+                    android:checked="true"
                     android:text="@string/day_thursday"
                     app:chipBackgroundColor="@color/secondaryLightColor" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chip8"
+                    android:id="@+id/friChip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
+                    android:checked="true"
                     android:text="@string/day_friday"
                     app:chipBackgroundColor="@color/secondaryLightColor" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chip7"
+                    android:id="@+id/satChip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
@@ -116,7 +122,7 @@
                     app:chipBackgroundColor="@color/secondaryLightColor" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chip5"
+                    android:id="@+id/sunChip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:checkable="true"
@@ -128,19 +134,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginBottom="@dimen/content_spacing"
+                android:baselineAligned="false"
                 android:orientation="horizontal">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/textField2"
+                    android:id="@+id/durationLayout"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="@dimen/content_spacing"
-                    android:layout_weight="2"
+                    android:layout_weight="3"
                     android:hint="@string/duration"
                     android:importantForAutofill="no">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/editTextTime"
+                        android:id="@+id/durationTxt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:ems="10"
@@ -149,14 +156,15 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/menu"
+                    android:id="@+id/unitLayout"
                     style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.ExposedDropdownMenu"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
                     android:hint="@string/unit">
 
                     <AutoCompleteTextView
+                        android:id="@+id/unitSelect"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="none" />
