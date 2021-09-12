@@ -3,6 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/day_box.xml" value="0.39479166666666665" />
+        <entry key="app/src/main/res/drawable/day_box_selected.xml" value="0.39479166666666665" />
+        <entry key="app/src/main/res/drawable/day_progress_error.xml" value="0.39479166666666665" />
+        <entry key="app/src/main/res/drawable/day_progress_success.xml" value="0.39479166666666665" />
+        <entry key="app/src/main/res/drawable/day_progress_warning.xml" value="0.39479166666666665" />
+        <entry key="app/src/main/res/layout-v31/layout_calendar_day.xml" value="0.37864583333333335" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.29483695652173914" />
         <entry key="app/src/main/res/layout/blank_fragment.xml" value="0.37864583333333335" />
         <entry key="app/src/main/res/layout/calendar_day_layout.xml" value="0.353125" />

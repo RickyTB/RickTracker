@@ -9,5 +9,7 @@
     <color name="primaryTextColor">#ffffff</color>
     <color name="secondaryTextColor">#000000</color>
     <color name="dayBackgroundColor">#eeeeee</color>
-    <color name="successColor">#4CAF50</color>
+    <color name="successColor">#64DD17</color>
+    <color name="errorColor">#F44336</color>
+    <color name="warningColor">#FFC107</color>
 </resources>

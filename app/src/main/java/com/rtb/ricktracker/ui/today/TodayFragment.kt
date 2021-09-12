@@ -11,8 +11,6 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupWithNavController
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
@@ -60,8 +58,14 @@ class TodayFragment : Fragment() {
             if (day.owner == DayOwner.THIS_MONTH) {
                 textView.makeVisible()
                 progressView.makeVisible()
-                layout.setBackgroundResource(R.color.dayBackgroundColor)
-                guideline.setGuidelinePercent((0..10).random() / 10.0F)
+                layout.setBackgroundResource(R.drawable.day_box)
+                val progress = ((0..10).random() / 10.0F)
+                guideline.setGuidelinePercent(1 - progress)
+                when {
+                    progress > 0.66F -> progressView.setBackgroundResource(R.drawable.day_progress_success)
+                    progress > 0.33F -> progressView.setBackgroundResource(R.drawable.day_progress_warning)
+                    else -> progressView.setBackgroundResource(R.drawable.day_progress_error)
+                }
 
                 if (day.date == today) {
                     textView.setTypeface(null, Typeface.BOLD);
@@ -72,7 +76,7 @@ class TodayFragment : Fragment() {
                 when (day.date) {
                     selectedDate -> {
                         //textView.setTextColorRes(R.color.example_3_blue)
-                        borderLayout.setBackgroundResource(R.color.secondaryColor)
+                        borderLayout.setBackgroundResource(R.drawable.day_box_selected)
                         //dotView.makeInVisible()
                     }
                     else -> {
@@ -85,6 +89,7 @@ class TodayFragment : Fragment() {
                 textView.makeInVisible()
                 progressView.makeInVisible()
                 layout.background = null
+                borderLayout.background = null
             }
         }
     }
