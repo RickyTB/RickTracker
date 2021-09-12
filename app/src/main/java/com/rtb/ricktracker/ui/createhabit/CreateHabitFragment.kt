@@ -8,14 +8,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.Toast
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import com.rtb.ricktracker.R
 import com.rtb.ricktracker.databinding.FragmentCreateHabitBinding
 import com.rtb.ricktracker.model.Habit
-import com.rtb.ricktracker.ui.habits.HabitsFragmentDirections
+import java.time.LocalDate
 import java.util.*
 
 class CreateHabitFragment : Fragment() {
@@ -26,6 +25,8 @@ class CreateHabitFragment : Fragment() {
     // This property is only valid between onCreateView and
     // onDestroyView.
     private val binding get() = _binding!!
+
+    private var selectedDate: LocalDate = LocalDate.now()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -45,6 +46,8 @@ class CreateHabitFragment : Fragment() {
         val adapter = ArrayAdapter(requireContext(), R.layout.list_item, unitOptions)
         binding.unitSelect.setAdapter(adapter)
 
+        binding.calendarView.minDate = Date().time
+
         viewModel.loading.observe(viewLifecycleOwner, {
             binding.createBtn.isEnabled = !it
         })
@@ -54,6 +57,10 @@ class CreateHabitFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        binding.calendarView.setOnDateChangeListener { _, year, month, day ->
+            selectedDate = LocalDate.of(year, month + 1, day)
+        }
 
         binding.createBtn.setOnClickListener {
             onCreateHabit()
@@ -67,7 +74,6 @@ class CreateHabitFragment : Fragment() {
 
     private fun onCreateHabit() {
         val description = binding.descriptionTxt.text.toString()
-        val startDate = Date(binding.calendarView.date)
         val days = listOf(
             binding.monChip.isChecked,
             binding.tueChip.isChecked,
@@ -82,7 +88,7 @@ class CreateHabitFragment : Fragment() {
 
         // TODO: Validations
 
-        val newHabit = Habit(0, description, startDate, duration.toInt(), durationUnit, days)
+        val newHabit = Habit(0, description, selectedDate, duration.toInt(), durationUnit, days)
         viewModel.createHabit(newHabit)
         Toast.makeText(requireContext(), getString(R.string.habit_added), Toast.LENGTH_LONG).show()
         findNavController().navigateUp()

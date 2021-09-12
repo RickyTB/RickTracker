@@ -72,19 +72,12 @@ class TodayFragment : Fragment() {
                 } else {
                     textView.setTypeface(null, Typeface.NORMAL);
                 }
-
-                when (day.date) {
-                    selectedDate -> {
-                        //textView.setTextColorRes(R.color.example_3_blue)
-                        borderLayout.setBackgroundResource(R.drawable.day_box_selected)
-                        //dotView.makeInVisible()
-                    }
-                    else -> {
-                        borderLayout.background = null
-                        //textView.setTextColorRes(R.color.example_3_black)
-                        //dotView.isVisible = events[day.date].orEmpty().isNotEmpty()
-                    }
+                if (day.date == selectedDate) {
+                    borderLayout.setBackgroundResource(R.drawable.day_box_selected)
+                } else {
+                    borderLayout.background = null
                 }
+
             } else {
                 textView.makeInVisible()
                 progressView.makeInVisible()

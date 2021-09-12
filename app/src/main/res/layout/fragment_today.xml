@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginBottom="?attr/actionBarSize"
     android:clickable="true"
     android:focusable="true"
     android:orientation="vertical"
@@ -14,8 +15,8 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
-        app:titleTextColor="?attr/colorOnPrimary"
-        android:elevation="4dp" />
+        android:elevation="4dp"
+        app:titleTextColor="?attr/colorOnPrimary" />
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -46,8 +47,8 @@
                 android:paddingTop="12dp"
                 android:paddingEnd="20dp"
                 android:paddingBottom="12dp"
-                android:textAllCaps="true"
                 android:text="No tienes tareas en la fecha seleccionada"
+                android:textAllCaps="true"
                 android:textSize="14sp"
                 tools:text="7 Jan, 2019" />
 
@@ -55,11 +56,10 @@
                 android:id="@+id/recycler"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:nestedScrollingEnabled="false" />
+                android:nestedScrollingEnabled="false"
+                tools:listitem="@layout/card_current_habit" />
 
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
-
-
 </LinearLayout>

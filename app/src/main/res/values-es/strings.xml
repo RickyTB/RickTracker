@@ -23,6 +23,7 @@
     <string name="this_week">Esta semana</string>
     <string name="no_routine">Sin rutina</string>
     <string name="habit_added">¡Hábito agregado!</string>
+    <string name="ten_minutes">10 minutos</string>
     <string-array name="unit_options">
         <item>Minutos</item>
         <item>Horas</item>

@@ -1,6 +1,7 @@
 package com.rtb.ricktracker.util
 
 import androidx.room.TypeConverter
+import java.time.LocalDate
 import java.util.*
 
 class Converters {
@@ -12,6 +13,16 @@ class Converters {
     @TypeConverter
     fun dateToTimestamp(date: Date?): Long? {
         return date?.time?.toLong()
+    }
+
+    @TypeConverter
+    fun fromEpoch(value: Long?): LocalDate? {
+        return value?.let { LocalDate.ofEpochDay(it) }
+    }
+
+    @TypeConverter
+    fun dateToEpoch(date: LocalDate?): Long? {
+        return date?.toEpochDay()
     }
 
     @TypeConverter

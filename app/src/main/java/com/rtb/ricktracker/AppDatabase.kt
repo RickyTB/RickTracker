@@ -5,11 +5,12 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
+import com.rtb.ricktracker.model.Completion
 import com.rtb.ricktracker.model.Habit
 import com.rtb.ricktracker.model.dao.HabitDao
 import com.rtb.ricktracker.util.Converters
 
-@Database(entities = [Habit::class], version = 1)
+@Database(entities = [Habit::class, Completion::class], version = 1)
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun habitDao(): HabitDao
