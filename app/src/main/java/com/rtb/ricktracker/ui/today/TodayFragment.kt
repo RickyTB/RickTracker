@@ -8,9 +8,9 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.view.children
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.kizitonwose.calendarview.model.CalendarDay
 import com.kizitonwose.calendarview.model.CalendarMonth
 import com.kizitonwose.calendarview.model.DayOwner
@@ -18,24 +18,20 @@ import com.kizitonwose.calendarview.ui.DayBinder
 import com.kizitonwose.calendarview.ui.MonthHeaderFooterBinder
 import com.rtb.ricktracker.R
 import com.rtb.ricktracker.databinding.FragmentTodayBinding
-import com.rtb.ricktracker.util.daysOfWeekFromLocale
-import com.rtb.ricktracker.util.makeInVisible
-import com.rtb.ricktracker.util.makeVisible
-import com.rtb.ricktracker.util.setupMainFragmentNavController
+import com.rtb.ricktracker.util.*
 import java.time.LocalDate
 import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 
-class TodayFragment : Fragment() {
+class TodayFragment : Fragment(), HabitStatusListener {
 
     private var selectedDate: LocalDate? = null
     private val today = LocalDate.now()
 
-    private val titleSameYearFormatter = DateTimeFormatter.ofPattern("MMMM")
-    private val titleFormatter = DateTimeFormatter.ofPattern("MMM yyyy")
     private val selectionFormatter = DateTimeFormatter.ofPattern("d MMM yyyy")
     private val daysOfWeek = daysOfWeekFromLocale()
     private val currentMonth = YearMonth.now()
+    private var monthProgress: Map<LocalDate, Float>? = null
 
     private lateinit var homeViewModel: TodayViewModel
     private var _binding: FragmentTodayBinding? = null
@@ -59,7 +55,7 @@ class TodayFragment : Fragment() {
                 textView.makeVisible()
                 progressView.makeVisible()
                 layout.setBackgroundResource(R.drawable.day_box)
-                val progress = ((0..10).random() / 10.0F)
+                val progress = monthProgress?.get(day.date) ?: 0F
                 guideline.setGuidelinePercent(1 - progress)
                 when {
                     progress > 0.66F -> progressView.setBackgroundResource(R.drawable.day_progress_success)
@@ -96,7 +92,6 @@ class TodayFragment : Fragment() {
                 container.legendLayout.tag = month.yearMonth
                 container.legendLayout.children.map { it as TextView }.forEachIndexed { index, tv ->
                     tv.text = daysOfWeek[index].name.first().toString()
-                    //tv.setTextColorRes(R.color.example_3_black)
                 }
             }
         }
@@ -113,7 +108,6 @@ class TodayFragment : Fragment() {
         _binding = FragmentTodayBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-
         val calendarView = binding.calendarView
         calendarView.apply {
             setup(currentMonth.minusMonths(10), currentMonth.plusMonths(10), daysOfWeek.first())
@@ -122,28 +116,34 @@ class TodayFragment : Fragment() {
 
         if (savedInstanceState == null) {
             calendarView.post {
-                // Show today's events initially.
                 selectDate(today)
             }
         }
 
         calendarView.dayBinder = dayBinder
         calendarView.monthScrollListener = {
-/*
-            homeActivityToolbar.title = if (it.year == today.year) {
-                titleSameYearFormatter.format(it.yearMonth)
-            } else {
-                titleFormatter.format(it.yearMonth)
-            }
-*/
-            // Select the first day of the month when
-            // we scroll to a new month.
+            homeViewModel.loadMonthHabits(it.yearMonth)
             selectDate(it.yearMonth.atDay(1))
         }
         calendarView.monthHeaderBinder = monthHeaderBinder
 
-        homeViewModel.text.observe(viewLifecycleOwner, Observer {
-            //TODO: do something.
+        homeViewModel.progress.observe(viewLifecycleOwner, {
+            monthProgress = it
+            calendarView.notifyCalendarChanged()
+        })
+
+        val adapter = DayHabitsAdapter(this)
+        val recyclerView = binding.recycler
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        homeViewModel.dayHabits.observe(viewLifecycleOwner, {
+            adapter.values = it
+            if (it.isEmpty()) {
+                binding.selectedDateLabel.makeVisible()
+            } else {
+                binding.selectedDateLabel.makeGone()
+            }
         })
 
         return root
@@ -171,14 +171,12 @@ class TodayFragment : Fragment() {
     }
 
     private fun updateAdapterForDate(date: LocalDate) {
-/*
-        eventsAdapter.apply {
-            events.clear()
-            events.addAll(this@Example3Fragment.events[date].orEmpty())
-            notifyDataSetChanged()
-        }
-*/
+        homeViewModel.loadDayHabits(date)
         binding.toolbar.title = selectionFormatter.format(date)
+    }
+
+    override fun onHabitStatusChange(id: Int, status: Boolean) {
+        homeViewModel.changeHabitStatus(id, selectedDate!!, status)
     }
 
 }

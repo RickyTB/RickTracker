@@ -24,6 +24,7 @@
     <string name="no_routine">Sin rutina</string>
     <string name="habit_added">¡Hábito agregado!</string>
     <string name="ten_minutes">10 minutos</string>
+    <string name="no_tasks_on_date">No tienes tareas en la fecha seleccionada</string>
     <string-array name="unit_options">
         <item>Minutos</item>
         <item>Horas</item>

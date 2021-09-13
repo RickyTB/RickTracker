@@ -7,6 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.rtb.ricktracker.model.Completion
 import com.rtb.ricktracker.model.Habit
+import com.rtb.ricktracker.model.dao.CompletionDao
 import com.rtb.ricktracker.model.dao.HabitDao
 import com.rtb.ricktracker.util.Converters
 
@@ -14,6 +15,7 @@ import com.rtb.ricktracker.util.Converters
 @TypeConverters(Converters::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun habitDao(): HabitDao
+    abstract fun completionDao(): CompletionDao
 
     companion object {
         @Volatile
