@@ -11,7 +11,7 @@ fun Toolbar.setupMainFragmentNavController(
 ) {
     val appBarConfiguration = AppBarConfiguration(
         setOf(
-            R.id.navigation_today, R.id.navigation_habits, R.id.navigation_notifications
+            R.id.navigation_today, R.id.navigation_habits
         )
     )
     this.setupWithNavController(navController, appBarConfiguration)
